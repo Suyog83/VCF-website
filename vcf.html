@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCF Cyber Solutions - Securing Your Digital Future</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Sci-Fi Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000000;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(0, 255, 157, 0.1) 0%, transparent 50%);
+            animation: bgPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { transform: translate(-25%, -25%) scale(1); }
+            50% { transform: translate(-25%, -25%) scale(1.1); }
+        }
+
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, rgba(0, 212, 255, 0.03) 0px, transparent 1px, transparent 40px, rgba(0, 212, 255, 0.03) 41px),
+                repeating-linear-gradient(90deg, rgba(0, 212, 255, 0.03) 0px, transparent 1px, transparent 40px, rgba(0, 212, 255, 0.03) 41px);
+            perspective: 500px;
+            transform-style: preserve-3d;
+            animation: gridPerspective 20s linear infinite;
+        }
+
+        @keyframes gridPerspective {
+            0% { transform: rotateX(60deg) translateY(0); }
+            100% { transform: rotateX(60deg) translateY(40px); }
+        }
+
+        .particle {
+            position: absolute;
+            background: #00d4ff;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ff;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .particle:nth-child(odd) {
+            width: 3px;
+            height: 3px;
+            animation: floatParticle1 12s infinite ease-in-out;
+        }
+
+        .particle:nth-child(even) {
+            width: 2px;
+            height: 2px;
+            animation: floatParticle2 10s infinite ease-in-out;
+        }
+
+        .particle:nth-child(3n) {
+            background: #8a2be2;
+            box-shadow: 0 0 20px #8a2be2, 0 0 40px #8a2be2;
+        }
+
+        .particle:nth-child(5n) {
+            background: #00ff9d;
+            box-shadow: 0 0 20px #00ff9d, 0 0 40px #00ff9d;
+        }
+
+        @keyframes floatParticle1 {
+            0%, 100% { 
+                transform: translateY(0) translateX(0) scale(1); 
+                opacity: 0.3; 
+            }
+            25% { 
+                transform: translateY(-100px) translateX(50px) scale(1.5); 
+                opacity: 1; 
+            }
+            50% { 
+                transform: translateY(-200px) translateX(-30px) scale(1); 
+                opacity: 0.5; 
+            }
+            75% { 
+                transform: translateY(-300px) translateX(70px) scale(1.2); 
+                opacity: 0.8; 
+            }
+        }
+
+        @keyframes floatParticle2 {
+            0%, 100% { 
+                transform: translateY(0) translateX(0) rotate(0deg); 
+                opacity: 0.2; 
+            }
+            33% { 
+                transform: translateY(-150px) translateX(-60px) rotate(120deg); 
+                opacity: 1; 
+            }
+            66% { 
+                transform: translateY(-280px) translateX(40px) rotate(240deg); 
+                opacity: 0.6; 
+            }
+        }
+
+        /* Hexagon Pattern */
+        .hexagon-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .hexagon {
+            position: absolute;
+            width: 100px;
+            height: 58px;
+            background: transparent;
+            border-left: 2px solid #00d4ff;
+            border-right: 2px solid #00d4ff;
+            animation: hexFloat 8s ease-in-out infinite;
+            cursor: pointer;
+            pointer-events: all;
+            transition: all 0.3s ease;
+            filter: brightness(1);
+        }
+
+        .hexagon::before,
+        .hexagon::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: transparent;
+            border: 2px solid #00d4ff;
+            transform: rotate(60deg);
+            left: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .hexagon::after {
+            transform: rotate(-60deg);
+        }
+
+        .hexagon:hover {
+            transform: scale(1.5) rotate(180deg) !important;
+            opacity: 1 !important;
+            filter: brightness(2) drop-shadow(0 0 30px #00d4ff);
+            z-index: 100;
+            animation-play-state: paused;
+        }
+
+        .hexagon:hover::before,
+        .hexagon:hover::after {
+            border-color: #00ff9d;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+            box-shadow: 0 0 30px #00d4ff, inset 0 0 20px #00d4ff;
+        }
+
+        .hexagon.clicked {
+            animation: hexagonExplode 0.6s ease-out forwards;
+        }
+
+        @keyframes hexagonExplode {
+            0% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(2.5) rotate(360deg);
+                opacity: 0.8;
+                filter: brightness(3) drop-shadow(0 0 50px #00d4ff);
+            }
+            100% {
+                transform: scale(0.5) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes hexFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(-50px) rotate(180deg); 
+                opacity: 0.7;
+            }
+        }
+
+        /* Hexagon ripple effect */
+        .hex-ripple {
+            position: absolute;
+            border: 2px solid #00d4ff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: rippleExpand 1s ease-out forwards;
+        }
+
+        @keyframes rippleExpand {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+
+        /* Scanning Line Effect */
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                #00d4ff 50%, 
+                transparent 100%);
+            box-shadow: 0 0 20px #00d4ff;
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* Digital Rain Effect */
+        .digital-rain {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(180deg, transparent 0%, #00d4ff 50%, transparent 100%);
+            animation: rain linear infinite;
+        }
+
+        @keyframes rain {
+            0% { transform: translateY(-100px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.6));
+            animation: logoGlow 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-title {
+            font-size: 28px;
+            background: linear-gradient(45deg, #ffffff, #ff8c00);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-tagline {
+            font-size: 12px;
+            color: #ff8c00;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.6)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.9)); }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 3s ease-in-out infinite;
+        }
+
+        @keyframes textShine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            color: #a0aec0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #00d4ff, #0084ff);
+            color: white;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00d4ff;
+            border: 2px solid #00d4ff;
+        }
+
+        .btn-secondary:hover {
+            background: #00d4ff;
+            color: #0a0e27;
+            box-shadow: 0 0 30px #00d4ff;
+        }
+
+        .shield-icon {
+            width: 150px;
+            height: 150px;
+            margin: 40px auto;
+            position: relative;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .shield-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid #00d4ff;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .shield-ring:nth-child(1) {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .shield-ring:nth-child(2) {
+            animation: pulse 2s ease-in-out 0.5s infinite;
+        }
+
+        .shield-ring:nth-child(3) {
+            animation: pulse 2s ease-in-out 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(26, 31, 58, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #00d4ff;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .service-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #00d4ff;
+        }
+
+        .service-card p {
+            color: #a0aec0;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 100px 50px;
+            background: rgba(0, 212, 255, 0.05);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #0084ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            animation: countUp 2s ease-out;
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: #a0aec0;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 50px;
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .about-text h3 {
+            font-size: 32px;
+            color: #00d4ff;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #a0aec0;
+            margin-bottom: 20px;
+        }
+
+        .about-features {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            color: #00d4ff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Cyber Sphere Animation */
+        .about-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cyber-sphere {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sphere-ring {
+            position: absolute;
+            border: 2px solid #00d4ff;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .ring-1 {
+            width: 300px;
+            height: 300px;
+            animation: rotateRing1 10s linear infinite;
+            border-color: #00d4ff;
+        }
+
+        .ring-2 {
+            width: 220px;
+            height: 220px;
+            animation: rotateRing2 8s linear infinite reverse;
+            border-color: #8a2be2;
+        }
+
+        .ring-3 {
+            width: 140px;
+            height: 140px;
+            animation: rotateRing3 6s linear infinite;
+            border-color: #00ff9d;
+        }
+
+        @keyframes rotateRing1 {
+            0% { transform: rotateX(60deg) rotateZ(0deg); }
+            100% { transform: rotateX(60deg) rotateZ(360deg); }
+        }
+
+        @keyframes rotateRing2 {
+            0% { transform: rotateY(60deg) rotateZ(0deg); }
+            100% { transform: rotateY(60deg) rotateZ(360deg); }
+        }
+
+        @keyframes rotateRing3 {
+            0% { transform: rotateX(30deg) rotateY(30deg) rotateZ(0deg); }
+            100% { transform: rotateX(30deg) rotateY(30deg) rotateZ(360deg); }
+        }
+
+        .sphere-core {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #00d4ff 0%, #0084ff 50%, transparent 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px #00d4ff, 0 0 80px #00d4ff, inset 0 0 20px #00d4ff;
+            animation: corePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes corePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 50px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 132, 255, 0.1) 100%);
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            color: #a0aec0;
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            background: rgba(10, 14, 39, 0.8);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col a {
+            color: #a0aec0;
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #00d4ff;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #00d4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: #00d4ff;
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 18px; }
+            header { padding: 15px 20px; flex-wrap: wrap; }
+            .logo { flex-direction: row; gap: 10px; }
+            .logo-img { width: 40px; height: 40px; }
+            .logo-title { font-size: 20px; }
+            .logo-tagline { font-size: 10px; }
+            nav ul { gap: 15px; font-size: 14px; }
+            .services, .stats, .cta-section, .about { padding: 60px 20px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-features { grid-template-columns: 1fr; }
+            .cyber-sphere { width: 200px; height: 200px; }
+            .ring-1 { width: 200px; height: 200px; }
+            .ring-2 { width: 140px; height: 140px; }
+            .ring-3 { width: 80px; height: 80px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="bg-grid"></div>
+        <div class="hexagon-container" id="hexagons"></div>
+        <div class="scan-line"></div>
+        <div id="particles"></div>
+        <div id="digitalRain"></div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3Cstyle%3E.owl-dark%7Bfill:%232c3e50%7D.owl-orange%7Bfill:%23ff8c00%7D.owl-white%7Bfill:%23ffffff%7D%3C/style%3E%3C/defs%3E%3C!-- Owl body --%3E%3Cpath class='owl-dark' d='M200 350 L140 280 L140 150 Q140 80 200 80 Q260 80 260 150 L260 280 Z'/%3E%3C!-- Ears/Eyebrows --%3E%3Cpath class='owl-orange' d='M120 130 Q100 110 110 90 L140 120 Z'/%3E%3Cpath class='owl-orange' d='M280 130 Q300 110 290 90 L260 120 Z'/%3E%3C!-- Eyes outline --%3E%3Ccircle class='owl-white' cx='165' cy='160' r='35'/%3E%3Ccircle class='owl-white' cx='235' cy='160' r='35'/%3E%3Ccircle class='owl-dark' cx='165' cy='160' r='28'/%3E%3Ccircle class='owl-dark' cx='235' cy='160' r='28'/%3E%3Ccircle class='owl-orange' cx='165' cy='160' r='20'/%3E%3Ccircle class='owl-orange' cx='235' cy='160' r='20'/%3E%3Ccircle class='owl-dark' cx='168' cy='157' r='10'/%3E%3Ccircle class='owl-dark' cx='238' cy='157' r='10'/%3E%3C!-- Beak --%3E%3Cpath class='owl-white' d='M200 180 L190 200 L210 200 Z'/%3E%3C!-- VCF Text --%3E%3Ctext x='200' y='270' font-family='Arial Black' font-size='50' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3EVCF%3C/text%3E%3C/svg%3E" alt="VCF Logo" class="logo-img">
+            <div class="logo-text">
+                <span class="logo-title">VCF Cyber Solutions</span>
+                <span class="logo-tagline">It's Elementary, It's Cybersecurity</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Securing Your Digital Future</h1>
+            <p>Advanced Cybersecurity Solutions for Modern Threats</p>
+            <div class="shield-icon">
+                <div class="shield-ring"></div>
+                <div class="shield-ring"></div>
+                <div class="shield-ring"></div>
+            </div>
+            <div class="cta-buttons">
+                <button class="btn btn-primary">Get Protected</button>
+                <button class="btn btn-secondary">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Threat Detection</h3>
+                <p>Advanced AI-powered threat detection and prevention systems to keep your business safe from cyberattacks.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔒</div>
+                <h3>Data Encryption</h3>
+                <p>Military-grade encryption solutions to protect your sensitive data from unauthorized access.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Network Security</h3>
+                <p>Comprehensive network monitoring and security infrastructure to safeguard your digital assets.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>Compliance Solutions</h3>
+                <p>Ensure your business meets industry standards and regulatory requirements with our compliance services.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Clients Protected</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1M+</div>
+                <div class="stat-label">Threats Blocked</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime Guarantee</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support Available</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2 class="section-title">About VCF Cyber Solutions</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h3>Leading the Future of Cybersecurity</h3>
+                        <p>VCF Cyber Solutions is at the forefront of digital security innovation. With years of experience protecting businesses worldwide, we combine cutting-edge technology with deep expertise to safeguard your most valuable assets.</p>
+                        <p>Our team of certified security professionals works around the clock to stay ahead of emerging threats, ensuring your business remains secure in an ever-evolving digital landscape.</p>
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span>ISO 27001 Certified</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span>SOC 2 Type II Compliant</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span>24/7 Security Operations Center</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span>Global Threat Intelligence Network</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="cyber-sphere">
+                            <div class="sphere-ring ring-1"></div>
+                            <div class="sphere-ring ring-2"></div>
+                            <div class="sphere-ring ring-3"></div>
+                            <div class="sphere-core"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <h2>Ready to Secure Your Business?</h2>
+        <p>Join hundreds of companies trusting VCF Cyber Solutions</p>
+        <button class="btn btn-primary">Schedule a Consultation</button>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Threat Detection</a></li>
+                    <li><a href="#">Data Encryption</a></li>
+                    <li><a href="#">Network Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="social-icons">
+            <div class="social-icon">𝕏</div>
+            <div class="social-icon">in</div>
+            <div class="social-icon">f</div>
+            <div class="social-icon">▶</div>
+        </div>
+        <p style="margin-top: 30px; color: #a0aec0;">&copy; 2024 VCF Cyber Solutions. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 80; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Create hexagons with interactivity
+        const hexagonContainer = document.getElementById('hexagons');
+        for (let i = 0; i < 12; i++) {
+            const hexagon = document.createElement('div');
+            hexagon.className = 'hexagon';
+            hexagon.style.left = (Math.random() * 90) + '%';
+            hexagon.style.top = (Math.random() * 90) + '%';
+            hexagon.style.animationDelay = (Math.random() * 4) + 's';
+            hexagon.style.animationDuration = (Math.random() * 6 + 6) + 's';
+            
+            // Hover sound effect (visual feedback)
+            hexagon.addEventListener('mouseenter', function() {
+                this.style.borderColor = '#00ff9d';
+            });
+            
+            hexagon.addEventListener('mouseleave', function() {
+                this.style.borderColor = '#00d4ff';
+            });
+            
+            // Click effect with ripple
+            hexagon.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.className = 'hex-ripple';
+                ripple.style.left = (this.offsetLeft + this.offsetWidth / 2) + 'px';
+                ripple.style.top = (this.offsetTop + this.offsetHeight / 2) + 'px';
+                ripple.style.marginLeft = '-100px';
+                ripple.style.marginTop = '-100px';
+                hexagonContainer.appendChild(ripple);
+                
+                // Add explode animation
+                this.classList.add('clicked');
+                
+                // Remove ripple and reset hexagon after animation
+                setTimeout(() => {
+                    ripple.remove();
+                    this.classList.remove('clicked');
+                    this.style.left = (Math.random() * 90) + '%';
+                    this.style.top = (Math.random() * 90) + '%';
+                }, 600);
+            });
+            
+            hexagonContainer.appendChild(hexagon);
+        }
+
+        // Create digital rain
+        const digitalRainContainer = document.getElementById('digitalRain');
+        for (let i = 0; i < 30; i++) {
+            const rain = document.createElement('div');
+            rain.className = 'digital-rain';
+            rain.style.left = (Math.random() * 100) + '%';
+            rain.style.animationDelay = (Math.random() * 5) + 's';
+            rain.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            digitalRainContainer.appendChild(rain);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Button ripple effect
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .stat-card, .about-text, .cyber-sphere, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
